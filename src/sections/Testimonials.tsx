@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useIsMobile } from '../hooks/use-mobile';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -55,8 +56,16 @@ export default function Testimonials() {
   const headerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 3;
-  const totalPages = Math.ceil(testimonials.length / itemsPerPage);
+  const isMobile = useIsMobile();
+  const itemsPerPage = isMobile ? 1 : 3;
+  const totalPages = useMemo(
+    () => Math.ceil(testimonials.length / itemsPerPage),
+    [itemsPerPage]
+  );
+
+  useEffect(() => {
+    setCurrentPage((prev) => Math.min(prev, Math.max(0, totalPages - 1)));
+  }, [totalPages]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -141,9 +150,10 @@ export default function Testimonials() {
           Testimonials
         </p>
         <h2
+          className="mx-auto max-w-[18ch] text-balance px-2"
           style={{
             fontFamily: '"Cormorant Garamond", Georgia, serif',
-            fontSize: '42px',
+            fontSize: 'clamp(1.75rem, 5vw, 2.625rem)',
             fontWeight: 500,
             lineHeight: 1.2,
             color: '#180c04',
@@ -168,29 +178,20 @@ export default function Testimonials() {
       </div>
 
       {/* Testimonial Cards */}
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 24px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '24px',
-        }}
-      >
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-6 px-5 sm:gap-8 sm:px-6 lg:grid-cols-3">
         {currentTestimonials.map((testimonial, i) => (
           <div
             key={testimonial.name}
             ref={(el) => { cardRefs.current[currentPage * itemsPerPage + i] = el; }}
+            className="min-h-0 lg:min-h-[280px]"
             style={{
               backgroundColor: '#ffffff',
               borderRadius: '12px',
-              padding: '36px 32px',
+              padding: 'clamp(1.25rem, 5vw, 2.25rem)',
               boxShadow: '0 4px 20px rgba(24, 12, 4, 0.06)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              minHeight: '280px',
             }}
           >
             <div>

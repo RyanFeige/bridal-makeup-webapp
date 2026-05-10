@@ -77,9 +77,10 @@ export default function Tiers() {
         )}
         {tiersConfig.title && (
           <h2
+            className="mx-auto max-w-[18ch] text-balance"
             style={{
               fontFamily: '"Cormorant Garamond", Georgia, serif',
-              fontSize: '42px',
+              fontSize: 'clamp(1.75rem, 5vw, 2.625rem)',
               fontWeight: 500,
               lineHeight: 1.2,
               color: '#180c04',
@@ -96,22 +97,15 @@ export default function Tiers() {
           <div
             key={tier.name}
             ref={(el) => { tierRefs.current[i] = el; }}
+            className={`flex flex-col items-stretch gap-10 md:items-center md:gap-14 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
             style={{
-              display: 'flex',
-              flexDirection: i % 2 === 0 ? 'row' : 'row-reverse',
-              gap: '60px',
-              marginBottom: i < tiers.length - 1 ? '100px' : '0',
-              alignItems: 'center',
-              flexWrap: 'wrap',
+              marginBottom: i < tiers.length - 1 ? 'clamp(3.5rem, 10vw, 6.25rem)' : '0',
             }}
           >
             {/* Image */}
             <div
-              className="tier-image-placeholder"
+              className="tier-image-placeholder mx-auto w-full max-w-[460px] shrink-0 md:mx-0"
               style={{
-                width: '100%',
-                maxWidth: '460px',
-                flex: '0 0 auto',
                 position: 'relative',
                 overflow: 'hidden',
                 borderRadius: '12px',
@@ -135,11 +129,7 @@ export default function Tiers() {
 
             {/* Text Content */}
             <div
-              className="tier-text-content"
-              style={{
-                flex: '1 1 400px',
-                minWidth: '300px',
-              }}
+              className="tier-text-content min-w-0 flex-1 md:min-w-[300px]"
             >
               <p
                 style={{

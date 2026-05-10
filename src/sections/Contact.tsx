@@ -119,9 +119,10 @@ export default function Contact() {
           Get in Touch
         </p>
         <h2
+          className="mx-auto max-w-[22ch] text-balance px-2"
           style={{
             fontFamily: '"Cormorant Garamond", Georgia, serif',
-            fontSize: '42px',
+            fontSize: 'clamp(1.75rem, 5vw, 2.625rem)',
             fontWeight: 500,
             lineHeight: 1.2,
             color: '#180c04',
@@ -132,16 +133,7 @@ export default function Contact() {
       </div>
 
       {/* Content */}
-      <div
-        style={{
-          maxWidth: '1100px',
-          margin: '0 auto',
-          padding: '0 24px',
-          display: 'flex',
-          gap: '60px',
-          flexWrap: 'wrap',
-        }}
-      >
+      <div className="mx-auto flex max-w-[1100px] flex-wrap gap-10 px-5 sm:gap-14 sm:px-6 lg:gap-16">
         {/* Contact Info */}
         <div
           ref={infoRef}

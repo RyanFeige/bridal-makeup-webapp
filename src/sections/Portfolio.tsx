@@ -99,9 +99,10 @@ export default function Portfolio() {
           Portfolio
         </p>
         <h2
+          className="mx-auto max-w-[18ch] text-balance"
           style={{
             fontFamily: '"Cormorant Garamond", Georgia, serif',
-            fontSize: '42px',
+            fontSize: 'clamp(1.75rem, 5vw, 2.625rem)',
             fontWeight: 500,
             lineHeight: 1.2,
             color: '#fcfaee',
@@ -114,14 +115,7 @@ export default function Portfolio() {
       {/* Image Grid */}
       <div
         ref={gridRef}
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 24px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '20px',
-        }}
+        className="mx-auto grid max-w-[1200px] grid-cols-1 gap-5 px-5 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:gap-5"
       >
         {portfolioImages.map((image, i) => (
           <div

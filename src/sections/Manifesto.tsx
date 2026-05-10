@@ -104,12 +104,7 @@ export default function Manifesto() {
     >
       <div
         ref={containerRef}
-        className="manifesto-container"
-        style={{
-          maxWidth: '80vw',
-          margin: '0 auto',
-          padding: '128px 0',
-        }}
+        className="manifesto-container mx-auto max-w-[min(92vw,56rem)] px-4 py-16 sm:px-6 sm:py-24 md:py-32"
       >
         {manifestoConfig.sectionLabel && (
           <p

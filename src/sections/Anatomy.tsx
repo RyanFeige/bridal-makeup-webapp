@@ -76,9 +76,10 @@ export default function Anatomy() {
         )}
         {anatomyConfig.title && (
           <h2
+            className="mx-auto max-w-[20ch] text-balance px-2"
             style={{
               fontFamily: '"Cormorant Garamond", Georgia, serif',
-              fontSize: '42px',
+              fontSize: 'clamp(1.75rem, 5vw, 2.625rem)',
               fontWeight: 500,
               lineHeight: 1.2,
               color: '#180c04',
@@ -91,17 +92,15 @@ export default function Anatomy() {
 
       {/* Split Layout */}
       <div
+        className="flex min-h-0 flex-col md:min-h-screen md:flex-row"
         style={{
-          display: 'flex',
           maxWidth: '1400px',
           margin: '0 auto',
-          minHeight: '100vh',
         }}
       >
         {/* Left: Sticky HeritageHelix */}
         <div
           style={{
-            width: '50%',
             position: 'sticky',
             top: 0,
             height: '100vh',
@@ -109,27 +108,21 @@ export default function Anatomy() {
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          className="hidden md:flex"
+          className="hidden md:flex md:w-1/2"
         >
-          <div style={{ width: '100%', height: '80vh' }}>
+          <div className="h-[min(80vh,600px)] w-full md:h-[80vh]" style={{ minHeight: 0 }}>
             <HeritageHelix />
           </div>
         </div>
 
         {/* Right: Scrolling Content */}
-        <div
-          style={{
-            width: '50%',
-            padding: '0 48px',
-          }}
-          className="w-full md:w-1/2"
-        >
+        <div className="w-full px-5 pb-8 pt-6 sm:px-8 md:w-1/2 md:px-10 md:pb-0 md:pt-0">
           {pillars.map((pillar, i) => (
             <div
               key={pillar.label}
               ref={(el) => { pillarRefs.current[i] = el; }}
+              className="py-[clamp(4rem,10vh,8rem)] first:pt-0 md:first:pt-[15vh]"
               style={{
-                padding: '15vh 0',
                 borderBottom: i < pillars.length - 1 ? '1px solid rgba(24, 12, 4, 0.1)' : 'none',
               }}
             >

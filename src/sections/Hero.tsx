@@ -58,13 +58,13 @@ export default function Hero() {
       style={{
         position: 'relative',
         width: '100%',
+        minHeight: '100svh',
         height: '100vh',
-        minHeight: '600px',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'center',
-        paddingBottom: '12vh',
+        paddingBottom: 'max(5rem, 12vh, env(safe-area-inset-bottom, 0px))',
       }}
     >
       {/* Video Background */}
@@ -100,13 +100,10 @@ export default function Hero() {
 
       {/* Content Panel */}
       <div
-        className="liquid-glass"
+        className="liquid-glass mx-4 mb-4 w-[min(92vw,600px)] max-w-full px-5 py-10 sm:mb-8 sm:px-10 sm:py-12"
         style={{
           position: 'relative',
           zIndex: 10,
-          maxWidth: '600px',
-          width: '90%',
-          padding: '48px 40px 40px',
           borderRadius: '2px',
           textAlign: 'center',
         }}
